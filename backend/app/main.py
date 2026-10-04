@@ -1,33 +1,21 @@
 from fastapi import FastAPI
 
-from app.database.connection import engine
 from app.database.base import Base
-
+from app.database.connection import engine
 from app.models import Battery, BatteryReading
-
 from app.routes.battery import router as battery_router
-from app.routes.readings import router as readings_router
 
-
-# Create database tables
 Base.metadata.create_all(bind=engine)
-
 
 app = FastAPI(
     title="AI-Based Smart Battery Lifecycle System",
     description="Backend for battery monitoring and second-life recommendation",
-    version="1.0.0"
+    version="1.0.0",
 )
 
-
-# Include API routers
 app.include_router(battery_router)
-app.include_router(readings_router)
 
 
-# Home API
 @app.get("/")
 def home():
-    return {
-        "message": "Smart Battery Backend is running!"
-    }
+    return {"message": "Smart Battery Backend is running!"}
