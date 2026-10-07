@@ -31,6 +31,10 @@ class Battery(Base):
         default="Active"
     )
 
+    serial_number = Column(String(100), nullable=True)
+    manufacturer = Column(String(150), nullable=True)
+    chemistry = Column(String(100), nullable=True)
+
     created_at = Column(
         DateTime,
         default=datetime.utcnow

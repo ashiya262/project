@@ -30,6 +30,9 @@ class BatteryReading(Base):
         nullable=False
     )
 
+    measured_capacity = Column(Float, nullable=True)
+    cycle_count = Column(Integer, nullable=True)
+
     timestamp = Column(
         DateTime,
         default=datetime.utcnow
